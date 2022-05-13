@@ -1,0 +1,3 @@
+rpc:
+  host: localhost
+  port: 5009
