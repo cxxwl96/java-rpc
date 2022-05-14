@@ -72,11 +72,13 @@ public class RpcServer {
             throw new IOException("get resource error");
         }
         String parent = URLDecoder.decode(url.getPath(), Charset.defaultCharset().name());
-        if (!FileUtil.exist(parent)) {
+        final File parentFile = new File(parent);
+        parent = parentFile.getPath(); // 格式化路径，Windows下会在盘符前多一个/
+        if (!parentFile.exists()) {
             throw new FileNotFoundException(parent);
         }
         // 得到所有的class文件
-        final List<File> files = FileUtil.loopFiles(new File(parent));
+        final List<File> files = FileUtil.loopFiles(parentFile);
         for (File file : files) {
             if (!FileUtil.pathEndsWith(file, ".class")) {
                 continue;
