@@ -35,11 +35,11 @@ public class RpcServiceProxy implements InvocationHandler {
             .setMethod(method.getName())
             .setParamTypes(method.getParameterTypes())
             .setParams(args);
-        return new RpcClientServiceThread().start(request);
+        return new RpcClientService().start(request);
     }
 
     @SuppressWarnings("unchecked")
-    public <T> T dynamicService(Class<T> clazz) {
-        return (T) Proxy.newProxyInstance(clazz.getClassLoader(), new Class[] {clazz}, RpcServiceProxy.this);
+    public static <T> T dynamicService(Class<T> clazz) {
+        return (T) Proxy.newProxyInstance(clazz.getClassLoader(), new Class[] {clazz}, new RpcServiceProxy());
     }
 }

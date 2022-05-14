@@ -33,7 +33,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ClientRun {
     public static void main(String[] args) {
-        final UserService service = new RpcServiceProxy().dynamicService(UserService.class);
+        final UserService service = RpcServiceProxy.dynamicService(UserService.class);
         final boolean success = service.save(new User().setName("cxxwl96").setAge(24));
         log.info("save user: {}", success);
         final List<User> list = service.list();

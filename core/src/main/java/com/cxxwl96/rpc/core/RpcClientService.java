@@ -36,7 +36,7 @@ import lombok.extern.slf4j.Slf4j;
  * @since 2022/5/14 00:36
  */
 @Slf4j
-public class RpcClientServiceThread {
+public class RpcClientService {
     public Object start(RpcRequest request) {
         String host = ContextConfig.getHost();
         int port = ContextConfig.getPort();
